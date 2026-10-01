@@ -21,3 +21,14 @@ jobs:
       - run: npm run build 
         #4. 확인
       - run: ls -l dist
+
+        #5. EC2로 보내기
+      - uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          source: dist/*
+          target: /var/www/html
+          strip_components: 1  
+

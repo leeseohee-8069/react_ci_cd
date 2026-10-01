@@ -30,6 +30,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+#-------------------------------------------------
+빌드하는 ci문서
+name: React 코드 가져오기 
+
+on: [push]
+
+jobs:
+  reactDeploy:
+    runs-on: ubuntu-24.04
+
+    steps:
+        #1. 코드가져오기
+      - uses: actions/checkout@v6
+        
+        #2. 도구 가져오기
+      - uses: actions/setup-node@v4
+        with:
+          node-version : 22
+        #3.  도구를 이용해서 압축하기!
+      - run: npm ci
+      - run: npm run build 
+        #4. 확인
+      - run: ls -l dist
 
 
 */
